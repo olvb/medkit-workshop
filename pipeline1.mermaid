@@ -1,0 +1,21 @@
+
+graph TD
+    A((?))
+    B(regexp_replacer)
+    C(sentence_tokenizer)
+    E(family_detector)
+    F(regexp_matcher)
+    G((?)):::io
+
+    A -- full_text --> B
+    B -- clean_text --> C
+    C -- sentences --> E
+    E ~~~ F
+
+
+    E -.-> F
+
+    C -- sentences --> F
+    F -- entities --> G
+
+    classDef io fill:#fff4dd,stroke:#edb:

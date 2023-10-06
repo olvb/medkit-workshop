@@ -1,0 +1,42 @@
+
+graph LR
+
+    subgraph " "
+    A((?))
+    B(regexp_replacer)
+    C(sentence_tokenizer)
+    E(family_detector)
+    F((?)):::io
+
+    A -- full_text --> B
+    B -- clean_text --> C
+    C -- sentences --> E
+    E ~~~ F
+    E -.-> F
+    C -- sentences --> F
+
+    end
+
+
+    subgraph " "
+    G((?))
+    H(regexp_replacer)
+    I(bert_matcher)
+    J((?)):::io
+
+    G -- sentences --> H
+    H ~~~ I
+    G -- sentences --> I
+    H -- entities --> J
+    I -- entities --> J
+
+    end
+
+    K((?))
+    K -- full_text--> A
+    F -- sentences --> G
+
+    L((?))
+    J -- entities --> L
+
+    classDef io fill:#fff4dd,stroke:#edb:
